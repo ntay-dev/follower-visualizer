@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import confetti from 'canvas-confetti';
-  import { Hash, Layout, PartyPopper, Settings, Sparkles, Type, X } from 'lucide-vue-next';
+  import { Github, Hash, Layout, PartyPopper, Settings, Sparkles, Type, X } from 'lucide-vue-next';
   import { onMounted, onUnmounted, ref } from 'vue';
   import FollowerDisplay from './components/FollowerDisplay.vue';
 
@@ -186,6 +186,8 @@
   onUnmounted(() => {
     window.removeEventListener('keydown', handleKeydown);
   });
+
+  const config = useRuntimeConfig();
 </script>
 
 <template>
@@ -193,6 +195,32 @@
     <!-- Full Screen Display -->
     <div class="absolute inset-0 z-0" @click="triggerCelebration">
       <FollowerDisplay :count="count" :label="label" :theme="theme" />
+    </div>
+
+    <!-- Footer Info -->
+    <div
+      class="absolute top-4 right-4 z-10 flex flex-col items-end text-xs font-mono text-white/50 hover:text-white transition-colors pointer-events-none"
+    >
+      <span>v{{ config.public.version }}</span>
+      <div class="flex items-center gap-2 mt-1">
+        <a
+          href="https://x.com/ntay_dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pointer-events-auto hover:underline"
+        >
+          Created by @ntay_dev
+        </a>
+        <a
+          href="https://github.com/ntay-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pointer-events-auto hover:text-white transition-colors"
+          aria-label="GitHub"
+        >
+          <Github class="w-4 h-4" />
+        </a>
+      </div>
     </div>
 
     <!-- Hint Message -->
